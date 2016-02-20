@@ -1,1 +1,4 @@
-sceneSetups: []
+sceneSetups:
+- path: Assets/Scenes/Japan_Outside.unity
+  isLoaded: 1
+  isActive: 1
