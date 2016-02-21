@@ -133,12 +133,4 @@ public class Autowalk : MonoBehaviour
 		}
     }
     
-    void OnCollisionEnter(Collision col)
-    {
-        isWalking = false;
-        //Application.LoadLevel("DungeonScene");
-        //SceneManager.LoadScene("DungeonScene", LoadSceneMode.Single);
-
-    }
-    
 }
