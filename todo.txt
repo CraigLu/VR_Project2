@@ -1,0 +1,28 @@
+todo:
+
+Find something to tank framerate OR do it the right way with lowered sync (Just spawn and then delete a large high poly item)
+
+Lower resolution
+Either Screen.setresolution (uncooperative, been fiddling) or
+https://www.reddit.com/r/Unity3D/comments/20arg7/i_made_a_script_to_make_a_unity_camera_render/
+(Not quite lower resolution but similar effect)
+
+Background noise vs sourced noise
+
+Background noise just attach it to the camera directly, otherwise just attach it to an objet (A child of the character, offset by some value)
+
+
+
+
+Potential scary monster rushing
+(http://www.turbosquid.com/3d-models/maya-dilophosaurus-frill/517654 ? Probably too high poly)
+https://www.assetstore.unity3d.com/en/#!/content/48933
+
+http://tf3dm.com/3d-model/oni-general-45145.html
+
+http://tf3dm.com/3d-model/monster-79000.html
+
+many options from http://tf3dm.com/search/?q=monster&format=All+Formats&search=Search
+
+
+
