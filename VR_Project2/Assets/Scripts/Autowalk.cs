@@ -24,7 +24,7 @@ public class Autowalk : MonoBehaviour
 	private Rigidbody r;
 	
 	// This variable determinates if the player will move or not 
-	private bool isWalking = false;
+	public bool isWalking = false;
 
 	public float maxRotate = 45;
 	//This is the variable for the player speed

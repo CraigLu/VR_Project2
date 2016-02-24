@@ -11,8 +11,6 @@ public class ScriptedExperience : MonoBehaviour {
 	public AudioSource audio6;
 	public CardboardHead head;
 	IEnumerator Start () {
-		Quaternion rotate = new Quaternion ();
-		rotate.Set (0, 0, 0, 0);
 		head = GetComponent<CardboardHead> ();
 		head.trackRotation = false;
 		head.trackPosition = false;
