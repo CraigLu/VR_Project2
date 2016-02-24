@@ -15,15 +15,16 @@ using System.Xml.Schema;
 
 public class Autowalk : MonoBehaviour 
 {
-	public AudioSource AudioFile;
+	public AudioSource Normal;
+	public AudioSource Wood;
+	public AudioSource Water;
+	private AudioSource audio;
 	private const int RIGHT_ANGLE = 90; 
-	
-	// This variable determinates if the player will move or not 
-	private bool isWalking = false;
-	
 	CardboardHead head = null;
 	private Rigidbody r;
 	
+	// This variable determinates if the player will move or not 
+	private bool isWalking = false;
 
 	public float maxRotate = 45;
 	//This is the variable for the player speed
@@ -51,14 +52,16 @@ public class Autowalk : MonoBehaviour
 	{
 		head = Camera.main.GetComponent<StereoController>().Head;
 		r = GetComponent<Rigidbody> ();
+		audio = new AudioSource ();
+		audio.volume = .7f;
 	}
-	
+
 	void Update () 
 	{
-
-
 		float xcomp=r.rotation.eulerAngles.x;
 		float zcomp=r.rotation.eulerAngles.z;
+		RaycastHit hit;
+		Ray stepRay = new Ray (transform.position, Vector3.down);
 
 		if(xcomp>180)
 			{
@@ -80,12 +83,42 @@ public class Autowalk : MonoBehaviour
         if (walkWhenTriggered && !walkWhenLookDown && !isWalking && Cardboard.SDK.CardboardTriggered) 
 		{
 			isWalking = true;
-			AudioFile.Play ();
+			if (Physics.Raycast (stepRay, out hit, 2)) {
+				if (hit.collider.tag == "Water") {
+					audio = Water;
+				}
+				if (hit.collider.tag == "Terrain") {
+					audio = Normal;
+				}
+				if (hit.collider.tag == "Wood") {
+					audio = Wood;
+				} 
+			}
+			audio.Play ();
 		} 
 		else if (walkWhenTriggered && !walkWhenLookDown && isWalking && Cardboard.SDK.CardboardTriggered) 
 		{
 			isWalking = false;
-			AudioFile.Stop ();
+			Normal.Stop ();
+			Wood.Stop ();
+			Water.Stop ();
+		}
+		if (Physics.Raycast (stepRay, out hit, 5)) {
+			if (hit.collider.tag == "Water" && audio != Water && audio.isPlaying == true) {
+				audio.Stop ();
+				audio = Water;
+				audio.Play ();
+			}
+			if (hit.collider.tag == "Terrain" && audio != Normal && audio.isPlaying == true) {
+				audio.Stop ();
+				audio = Normal;
+				audio.Play ();
+			}
+			if (hit.collider.tag == "Wood" && audio != Wood && audio.isPlaying == true) {
+				audio.Stop ();
+				audio = Wood;
+				audio.Play ();
+			} 
 		}
 		
 		// Walk when player looks below the threshold angle 
@@ -123,8 +156,6 @@ public class Autowalk : MonoBehaviour
 			Vector3 direction = new Vector3(head.transform.forward.x, 0, head.transform.forward.z).normalized * speed * Time.deltaTime;
 			Quaternion rotation = Quaternion.Euler(new Vector3(0, -transform.rotation.eulerAngles.y, 0));
 			transform.Translate(rotation * direction);
-
-            
         }
 		
 		if(freezeYPosition)
@@ -132,5 +163,4 @@ public class Autowalk : MonoBehaviour
 			transform.position = new Vector3(transform.position.x, yOffset, transform.position.z);
 		}
     }
-    
 }
