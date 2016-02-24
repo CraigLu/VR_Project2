@@ -24,7 +24,7 @@ public class ScriptedExperience : MonoBehaviour {
 		head.trackPosition = true;
 		yield return new WaitForSeconds (audio3.clip.length - 3);
 		audio4.Play ();
-		yield return new WaitForSeconds (8.7f);
+		yield return new WaitForSeconds (8f);
 		audio4.transform.localPosition = new Vector3 (1, 0, 0);
 		audio4.spatialBlend = .8f;
 		audio4.panStereo = .4f;

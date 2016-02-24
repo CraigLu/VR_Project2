@@ -7,6 +7,7 @@ public class ScriptedExperience2 : MonoBehaviour {
 	private AudioSource audio2;
 	public GameObject dragon;
 	public GameObject fire;
+	private SphereCollider trigger;
 	private Autowalk walk;
 
 
@@ -14,8 +15,10 @@ public class ScriptedExperience2 : MonoBehaviour {
 		audio1 = GameObject.FindGameObjectWithTag ("ScriptedFire").GetComponent<AudioSource>();
 		audio2 = GameObject.FindGameObjectWithTag ("ScriptedScare").GetComponent<AudioSource>();
 		walk = GameObject.FindGameObjectWithTag ("Character").GetComponent<Autowalk>();
+		trigger = GameObject.FindGameObjectWithTag ("Campfire").GetComponent<SphereCollider>();
 		fire.SetActive (false);
 		dragon.SetActive (false);
+		trigger.isTrigger = true;
 	}
 
 	IEnumerator OnTriggerEnter(){
@@ -33,5 +36,7 @@ public class ScriptedExperience2 : MonoBehaviour {
 		yield return new WaitForSeconds (1);
 		dragon.SetActive (false);
 		walk.walkWhenTriggered = true;
+		trigger.radius = 1;
+		trigger.isTrigger = false;
 	}
 }
