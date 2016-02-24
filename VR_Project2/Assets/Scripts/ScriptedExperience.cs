@@ -24,16 +24,11 @@ public class ScriptedExperience : MonoBehaviour {
 		head.trackPosition = true;
 		yield return new WaitForSeconds (audio3.clip.length - 3);
 		audio4.Play ();
-		yield return new WaitForSeconds (9);
+		yield return new WaitForSeconds (8.7f);
 		audio4.transform.localPosition = new Vector3 (1, 0, 0);
-		audio4.spatialBlend = 1f;
+		audio4.spatialBlend = .8f;
 		audio4.panStereo = .4f;
 		audio4.maxDistance = 50;
 		audio4.minDistance = 3;
-		yield return new WaitForSeconds (audio4.clip.length - 9);
-		audio4.spatialBlend = 0;
-		audio4.panStereo = 0;
-		audio4.maxDistance = 500;
-		audio4.minDistance = 1;
 	}
 }
