@@ -21,7 +21,6 @@ public class ScriptedExperience : MonoBehaviour {
 		audio3.Play ();
 		yield return new WaitForSeconds (3);
 		head.trackRotation = true;
-		head.trackPosition = true;
 		yield return new WaitForSeconds (audio3.clip.length - 3);
 		audio4.Play ();
 		yield return new WaitForSeconds (8f);
