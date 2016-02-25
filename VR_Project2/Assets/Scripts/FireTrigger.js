@@ -2,11 +2,10 @@
 
 var fire : GameObject;
 var spark : GameObject;
-private var myLight : Light;
+public var myLight : Light;
 public var AudioFile : AudioSource;
 function Start () {
 
-	myLight = GetComponent(Light);
 	fire.SetActive(false);
 	spark.SetActive(false);
 	myLight.intensity = 0;

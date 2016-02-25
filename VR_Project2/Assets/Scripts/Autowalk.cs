@@ -52,8 +52,7 @@ public class Autowalk : MonoBehaviour
 	{
 		head = Camera.main.GetComponent<StereoController>().Head;
 		r = GetComponent<Rigidbody> ();
-		audio = new AudioSource ();
-		audio.volume = .7f;
+		audio = Normal;
 	}
 
 	void Update () 
